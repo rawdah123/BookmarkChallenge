@@ -5,6 +5,7 @@ describe('load page',() => {
     })
 
     it('displays bookmark list', () =>{
+        cy.task("taskTruncateTables")
         cy.visit('/')
         cy.get('#name_input').type('Aldi')
         cy.get('#url_input').type('aldi.com')

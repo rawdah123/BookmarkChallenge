@@ -16,7 +16,18 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
+
+
+const truncateTables = require('../../test/truncate-tables.js')
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  on('task', {
+    taskTruncateTables() {
+      console.log('running truncateTables')
+      truncateTables()
+      return null
+    }
+  })
 }

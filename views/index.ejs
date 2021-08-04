@@ -7,12 +7,13 @@
     <title>bookmark manager</title>
 </head>
 <body>
-    <h1>Bookmark Manager!</h1>
-    <p id="bookmarks">
-        name: <%= name%>
-        url: <%= url%>
-        comment: <%= comment%>
-    </p>
+    <h1 >Bookmark Manager!</h1>
+    <% bookmarks.map(bookmark => { %>
+        <p id="bookmarks">name: <%= bookmark.name %></p>
+        <p>url: <%= bookmark.url %></p>
+        <p>comment: <%= bookmark.comment %></p>
+    <% }) %>
+
     <form action="/" method="POST">
         <input styles="font: impact;" type="text" id="name_input" placeholder="website name" name="name" />
         <input type="text" id="url_input" placeholder="url" name="url" />
