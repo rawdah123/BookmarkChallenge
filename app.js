@@ -36,6 +36,18 @@ app.delete('/bookmark/:id', async (req, res) => {
 	});
 	res.redirect('/');
 });
+app.post('/bmupdate', async (req, res) => {
+	console.log(req.params);
+	await models.Bookmark.render({
+		where : {
+			name    : req.body.name,
+			url     : req.body.url,
+			comment : req.body.comment
+		}
+	});
+	res.redirect('/');
+});
+
 
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`);

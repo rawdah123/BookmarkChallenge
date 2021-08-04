@@ -16,8 +16,11 @@
                 <p>comment: <%= bookmark.comment %></p>
             </div> 
             <form action = "/bookmark/<%= bookmark.id %>?_method=DELETE" method = "post">
-                <input id="bookmark-<%= index %>-delete" type = "submit" value="delete">
+                <input id="bookmark-<%= index %>-delete" type="submit" value="delete">
             </form> 
+            <form action = "/bmUpdate" method = "post">
+                <input id="bookmark-<%= index %>-edit" type="submit" value="edit">
+            </form>
         <% }) %>
     </div> 
     <form action="/" method="POST">
