@@ -37,6 +37,7 @@ app.delete('/bookmarks/:id', async (req, res) => {
 
 app.put('/bookmarks/:id', async (req, res) => {
 	console.log(req.params);
+	console.log('req.cooooody.name: ' + req.body.name)
 	await models.Bookmark.update({ 
         name    : req.body.name,
         url     : req.body.url,
@@ -51,6 +52,12 @@ app.put('/bookmarks/:id', async (req, res) => {
 
 app.post('/bmupdate', (req, res) => {
     res.render('bmupdate', {
+        id: req.body.id
+    });
+});
+
+app.post('/comment', (req, res) => {
+    res.render('comment', {
         id: req.body.id
     });
 });

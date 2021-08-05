@@ -12,8 +12,10 @@
         <% bookmarks.map((bookmark, index) => { %>
             <div id="bookmark-<%= index %>">
                 <p>name: <%= bookmark.name %></p>
-                <p>url: <%= bookmark.url %></p>
+                <a href="<%= bookmark.url %>"><%= bookmark.name %></a>
+                <% if (bookmark.comment) { %>
                 <p>comment: <%= bookmark.comment %></p>
+                <% } %>
             </div> 
             <form action = "/comment" method = "post">
                 <input type="hidden" name="id" value="<%= bookmark.id %>">

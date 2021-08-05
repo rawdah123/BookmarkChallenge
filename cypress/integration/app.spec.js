@@ -8,7 +8,7 @@ describe('load page',() => {
         cy.task("taskTruncateTables")
         cy.task("taskCreateEntry")
         cy.visit('/bookmarks')
-        cy.get('#bookmark-0').should('contain', 'Aldi')
+        cy.get('#bookmark-0').should('contain', 'aldi')
     })
 
     it('displays bookmark list', () =>{
@@ -37,7 +37,7 @@ describe('load page',() => {
         cy.task("taskCreateEntry")
         cy.visit('/bookmarks')
         cy.get('#bookmark-0-comment').click()
-        cy.get('h1').should('contain', 'Comment on that sheet!')
+        cy.get('h1').should('contain', 'Comment that sheet!')
         cy.get('#comment_input').type("Lottie's favourite store")
         cy.get('#submit').click()
         cy.get('#bookmark-0').should('contain', "comment: Lottie's favourite store")
