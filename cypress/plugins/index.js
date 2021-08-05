@@ -19,6 +19,7 @@
 
 
 const truncateTables = require('../../test/truncate-tables.js')
+const createEntry = require('../../test/create-entry.js')
 
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
@@ -28,6 +29,12 @@ module.exports = (on, config) => {
       console.log('running truncateTables')
       truncateTables()
       return null
+    },
+    taskCreateEntry() {
+      console.log('running createEntry')
+      createEntry()
+      return null
     }
   })
 }
+

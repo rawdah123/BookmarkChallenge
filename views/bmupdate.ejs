@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookmark manager</title>
+</head>
+<body>
+    <h1 >Update that sheet! <%= id %></h1>
+    <form action="../bookmarks/<%= id %>?_method=PUT" method="POST">
+        <input styles="font: impact;" type="text" id="name_input" placeholder="website name" name="name" />
+        <input type="text" id="url_input" placeholder="url" name="url" />
+        <!-- <input type="text" id="comment_input" placeholder="comment" name="comment"/> -->
+        <button type="submit" id="submit">Submit</submit>
+    </form>
+</body>
+</html>

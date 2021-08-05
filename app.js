@@ -9,14 +9,14 @@ app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', async (req, res) => {
+app.get('/bookmarks', async (req, res) => {
 	const bookmarks = await models.Bookmark.findAll({});
-	res.render('index.ejs', {
+	res.render('index', {
 		bookmarks : bookmarks
 	});
 });
 
-app.post('/', async (req, res) => {
+app.post('/bookmarks', async (req, res) => {
 	sequelize.sync().then(async () => {
 		await models.Bookmark.create({
 			name    : req.body.name,
@@ -24,28 +24,37 @@ app.post('/', async (req, res) => {
 			comment : req.body.comment
 		});
 	});
-	res.redirect('/');
+	res.redirect('/bookmarks');
 });
 
-app.delete('/bookmark/:id', async (req, res) => {
+app.delete('/bookmarks/:id', async (req, res) => {
 	console.log(req.params);
 	await models.Bookmark.destroy({
 		where : {
 			id : req.params.id
 		}
 	});
-	res.redirect('/');
+	res.redirect('/bookmarks');
 });
-app.post('/bmupdate', async (req, res) => {
+
+app.put('/bookmarks/:id', async (req, res) => {
 	console.log(req.params);
-	await models.Bookmark.render({
-		where : {
-			name    : req.body.name,
-			url     : req.body.url,
-			comment : req.body.comment
-		}
-	});
-	res.redirect('/');
+	await models.Bookmark.update({ 
+        name    : req.body.name,
+        url     : req.body.url,
+        comment : req.body.comment
+     }, {
+        where: {
+            id: req.params.id
+        }
+    });
+	res.redirect('/bookmarks');
+});
+
+app.post('/bmupdate', (req, res) => {
+    res.render('bmupdate', {
+        id: req.body.id
+    });
 });
 
 
