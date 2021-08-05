@@ -16,11 +16,23 @@ app.get('/bookmarks', async (req, res) => {
 	});
 });
 
+app.post('/bookmarks/filter', async (req, res) => {
+	const bookmarks = await models.Bookmark.findAll({
+		where: {
+			tag: req.body.filter
+		}
+	});
+	res.render('index', {
+		bookmarks : bookmarks
+	});
+});
+
 app.post('/bookmarks', async (req, res) => {
 	await models.Bookmark.create({
 			name    : req.body.name,
 			url     : req.body.url,
-			comment : req.body.comment
+			comment : req.body.comment,
+			tag     : req.body.tag
 		});
 		res.redirect('/bookmarks');
 });
@@ -37,7 +49,6 @@ app.delete('/bookmarks/:id', async (req, res) => {
 
 app.put('/bookmarks/:id', async (req, res) => {
 	console.log(req.params);
-	console.log('req.cooooody.name: ' + req.body.name)
 	await models.Bookmark.update({ 
         name    : req.body.name,
         url     : req.body.url,

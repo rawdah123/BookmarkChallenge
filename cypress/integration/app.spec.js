@@ -42,4 +42,18 @@ describe('load page',() => {
         cy.get('#submit').click()
         cy.get('#bookmark-0').should('contain', "comment: Lottie's favourite store")
     })
+
+    it('filter works', () =>{
+        cy.task("taskTruncateTables")
+        cy.task("taskCreateEntry")
+        cy.visit('/bookmarks')
+        cy.get('#name_input').type('Tesco')
+        cy.get('#url_input').type('tesco.com')
+        cy.get('#tag').select('shopping')
+        cy.get('#submit').click()
+        cy.get('#filter').select('noTag')
+        cy.get('#filter-submit').click()
+        cy.get('#bookmarks-list').should('contain', "aldi")
+        cy.get('#bookmarks-list').should('not.contain', "Tesco")
+    })
 })

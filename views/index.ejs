@@ -8,14 +8,14 @@
 </head>
 <body>
     <h1 >Bookmark Manager!</h1>
-    <form action="/bookmarks">
+    <form action="/bookmarks/filter" method="POST">
         <label for="filter">Filter by:</label>
-
         <select name="filter" id="filter">
+        <option disabled selected value> -- select an option -- </option>
+        <option value="no-tag">noTag</option>
         <option value="shopping">Shopping</option>
         <option value="entertainment">Entertainment</option>
         <option value="social-media">Social Media</option>
-        <option value="no-tag">noTag</option>
         </select>
     <button type="submit" id="filter-submit">FilterSubmit</button>
     </form>
@@ -25,7 +25,7 @@
         <% bookmarks.map((bookmark, index) => { %>
             <div id="bookmark-<%= index %>">
                 <p>name: <%= bookmark.name %></p>
-                <a href="<%= bookmark.url %>"><%= bookmark.name %></a>
+                url: <a href="<%= bookmark.url %>"><%= bookmark.url %></a>
                 <% if (bookmark.comment) { %>
                 <p>comment: <%= bookmark.comment %></p>
                 <% } %>
@@ -49,11 +49,11 @@
         <input type="text" id="url_input" placeholder="url" name="url" />
         <label for="tag">Choose a tag:</label>
 
-            <select name="tags" id="tags">
+            <select name="tag" id="tag">
+            <option value="no-tag">noTag</option>
             <option value="shopping">Shopping</option>
             <option value="entertainment">Entertainment</option>
             <option value="social-media">Social Media</option>
-            <option value="no-tag">noTag</option>
             </select>
         <button type="submit" id="submit">Submit</button>
     </form>
