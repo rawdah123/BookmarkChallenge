@@ -10,8 +10,12 @@ const bookmark = (sequelize, DataTypes) => {
 			},
 			comment : {
 				type : DataTypes.STRING(60)
+			},
+			tag : {
+				type : DataTypes.STRING(60)
 			}
 		},
+	
 		{
 			timestamps : false
 		}

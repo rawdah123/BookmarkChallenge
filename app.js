@@ -41,7 +41,8 @@ app.put('/bookmarks/:id', async (req, res) => {
 	await models.Bookmark.update({ 
         name    : req.body.name,
         url     : req.body.url,
-        comment : req.body.comment
+        comment : req.body.comment,
+		tag     : req.body.tag
      }, {
         where: {
             id: req.params.id

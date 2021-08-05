@@ -8,6 +8,19 @@
 </head>
 <body>
     <h1 >Bookmark Manager!</h1>
+    <form action="/bookmarks">
+        <label for="filter">Filter by:</label>
+
+        <select name="filter" id="filter">
+        <option value="shopping">Shopping</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="social-media">Social Media</option>
+        <option value="no-tag">noTag</option>
+        </select>
+    <button type="submit" id="filter-submit">FilterSubmit</button>
+    </form>
+ 
+
     <div id= "bookmarks-list">
         <% bookmarks.map((bookmark, index) => { %>
             <div id="bookmark-<%= index %>">
@@ -29,16 +42,20 @@
                 <input id="bookmark-<%= index %>-delete" type="submit" value="delete">
             </form> 
 
-
-
-
         <% }) %>
     </div> 
     <form action="/bookmarks" method="POST">
         <input styles="font: impact;" type="text" id="name_input" placeholder="website name" name="name" />
         <input type="text" id="url_input" placeholder="url" name="url" />
-        <!-- <input type="text" id="comment_input" placeholder="comment" name="comment"/> -->
-        <button type="submit" id="submit">Submit</submit>
+        <label for="tag">Choose a tag:</label>
+
+            <select name="tags" id="tags">
+            <option value="shopping">Shopping</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="social-media">Social Media</option>
+            <option value="no-tag">noTag</option>
+            </select>
+        <button type="submit" id="submit">Submit</button>
     </form>
 </body>
 </html>
