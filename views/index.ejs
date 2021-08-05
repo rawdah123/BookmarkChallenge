@@ -15,16 +15,24 @@
                 <p>url: <%= bookmark.url %></p>
                 <p>comment: <%= bookmark.comment %></p>
             </div> 
-            <form action = "/bookmarks/<%= bookmark.id %>?_method=DELETE" method = "post">
-                <input id="bookmark-<%= index %>-delete" type="submit" value="delete">
-            </form> 
+            <form action = "/comment" method = "post">
+                <input type="hidden" name="id" value="<%= bookmark.id %>">
+                <input id="bookmark-<%= index %>-comment" type="submit" value="Comment">
+            </form>
             <form action = "/bmUpdate" method = "post">
                 <input type="hidden" name="id" value="<%= bookmark.id %>">
                 <input id="bookmark-<%= index %>-edit" type="submit" value="edit">
             </form>
+            <form action = "/bookmarks/<%= bookmark.id %>?_method=DELETE" method = "post">
+                <input id="bookmark-<%= index %>-delete" type="submit" value="delete">
+            </form> 
+
+
+
+
         <% }) %>
     </div> 
-    <form action="/" method="POST">
+    <form action="/bookmarks" method="POST">
         <input styles="font: impact;" type="text" id="name_input" placeholder="website name" name="name" />
         <input type="text" id="url_input" placeholder="url" name="url" />
         <!-- <input type="text" id="comment_input" placeholder="comment" name="comment"/> -->

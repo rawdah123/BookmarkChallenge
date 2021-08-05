@@ -17,14 +17,12 @@ app.get('/bookmarks', async (req, res) => {
 });
 
 app.post('/bookmarks', async (req, res) => {
-	sequelize.sync().then(async () => {
-		await models.Bookmark.create({
+	await models.Bookmark.create({
 			name    : req.body.name,
 			url     : req.body.url,
 			comment : req.body.comment
 		});
-	});
-	res.redirect('/bookmarks');
+		res.redirect('/bookmarks');
 });
 
 app.delete('/bookmarks/:id', async (req, res) => {
