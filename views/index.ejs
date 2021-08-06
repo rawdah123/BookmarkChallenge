@@ -26,21 +26,25 @@
             <div id="bookmark-<%= index %>">
                 <p>name: <%= bookmark.name %></p>
                 url: <a href="<%= bookmark.url %>"><%= bookmark.url %></a>
-                <% if (bookmark.comment) { %>
-                <p>comment: <%= bookmark.comment %></p>
-                <% } %>
-            </div> 
-            <form action = "/comment" method = "post">
+                <% comments.map(comment => { %>
+                   <% if (comment.bookmarkId === bookmark.id) { %>
+                       <p>comment: <%= comment.text %></p>
+                <% }}) %>
+            </div>
+            <div style="display: flex;">
+                <form action = "/comment" method = "post">
                 <input type="hidden" name="id" value="<%= bookmark.id %>">
                 <input id="bookmark-<%= index %>-comment" type="submit" value="Comment">
-            </form>
-            <form action = "/bmUpdate" method = "post">
-                <input type="hidden" name="id" value="<%= bookmark.id %>">
-                <input id="bookmark-<%= index %>-edit" type="submit" value="edit">
-            </form>
-            <form action = "/bookmarks/<%= bookmark.id %>?_method=DELETE" method = "post">
-                <input id="bookmark-<%= index %>-delete" type="submit" value="delete">
-            </form> 
+                </form>
+                <form action = "/bmUpdate" method = "post">
+                    <input type="hidden" name="id" value="<%= bookmark.id %>">
+                    <input id="bookmark-<%= index %>-edit" type="submit" value="edit">
+                </form>
+                <form action = "/bookmarks/<%= bookmark.id %>?_method=DELETE" method = "post">
+                    <input id="bookmark-<%= index %>-delete" type="submit" value="delete">
+                </form> 
+            </div>
+
 
         <% }) %>
     </div> 

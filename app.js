@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 require('dotenv').config();
-const { models, sequelize } = require('./models');
+const { Bookmark, Comment, Tag } = require('./models');
 const methodOverride = require('method-override');
 
 app.use(methodOverride('_method'));
@@ -10,14 +10,16 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/bookmarks', async (req, res) => {
-	const bookmarks = await models.Bookmark.findAll({});
+	const bookmarks = await Bookmark.findAll({});
+	const comments = await Comment.findAll({});
 	res.render('index', {
-		bookmarks : bookmarks
+		bookmarks : bookmarks,
+		comments  : comments
 	});
 });
 
 app.post('/bookmarks/filter', async (req, res) => {
-	const bookmarks = await models.Bookmark.findAll({
+	const bookmarks = await Bookmark.findAll({
 		where: {
 			tag: req.body.filter
 		}
@@ -28,18 +30,15 @@ app.post('/bookmarks/filter', async (req, res) => {
 });
 
 app.post('/bookmarks', async (req, res) => {
-	await models.Bookmark.create({
-			name    : req.body.name,
-			url     : req.body.url,
-			comment : req.body.comment,
-			tag     : req.body.tag
-		});
-		res.redirect('/bookmarks');
+	await Bookmark.create({
+		name    : req.body.name,
+		url     : req.body.url
+	});
+	res.redirect('/bookmarks');
 });
 
 app.delete('/bookmarks/:id', async (req, res) => {
-	console.log(req.params);
-	await models.Bookmark.destroy({
+	await Bookmark.destroy({
 		where : {
 			id : req.params.id
 		}
@@ -49,11 +48,9 @@ app.delete('/bookmarks/:id', async (req, res) => {
 
 app.put('/bookmarks/:id', async (req, res) => {
 	console.log(req.params);
-	await models.Bookmark.update({ 
+	await Bookmark.update({ 
         name    : req.body.name,
         url     : req.body.url,
-        comment : req.body.comment,
-		tag     : req.body.tag
      }, {
         where: {
             id: req.params.id
