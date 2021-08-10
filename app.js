@@ -72,6 +72,16 @@ app.post('/comment', (req, res) => {
 });
 
 
+app.post('/comments/:id', async (req, res) => {
+        
+    await Comment.create({
+		text: req.body.comment,
+        BookmarkId: req.params.id
+	})
+	res.redirect('/bookmarks');
+});
+
+
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`);
 });

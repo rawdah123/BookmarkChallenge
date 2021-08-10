@@ -27,7 +27,7 @@
                 <p>name: <%= bookmark.name %></p>
                 url: <a href="<%= bookmark.url %>"><%= bookmark.url %></a>
                 <% comments.map(comment => { %>
-                   <% if (comment.bookmarkId === bookmark.id) { %>
+                   <% if (comment.BookmarkId === bookmark.id) { %>
                        <p>comment: <%= comment.text %></p>
                 <% }}) %>
             </div>

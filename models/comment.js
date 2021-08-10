@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.Bookmark = this.belongsTo(models.Bookmark)
+      this.Bookmark = this.belongsTo(models.Bookmark) // 
     }
   };
   Comment.init({
     text: DataTypes.STRING,
-    bookmarkId: DataTypes.INTEGER
+    BookmarkId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Comment',

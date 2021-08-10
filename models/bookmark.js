@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.Comments = this.hasMany(models.Comment, { onDelete: 'cascade' })
+      this.Comments = this.hasMany(models.Comment, { onDelete: 'cascade' }) // go find all the comments with this bookmark id
       this.Tags = this.hasMany(models.Tag, { onDelete: 'cascade' })
     }
   };

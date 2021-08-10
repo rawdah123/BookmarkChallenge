@@ -11,7 +11,7 @@ module.exports = {
 			name       : {
 				type : Sequelize.STRING
 			},
-			bookmarkId : {
+			BookmarkID : {
 				type       : Sequelize.INTEGER,
 				references : {
 					model : {
